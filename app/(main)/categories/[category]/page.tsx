@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation';
 import DynamicCard from '@/components/DynamicCard';
 import CardItemMain from '@/components/CardItemMain';
 import CardItem from '@/components/CardItem';
+import PopuplarProducts from '@/components/PopularProducts';
+import Texts from '@/components/Texts';
 
 interface Product {
     _id: string;
@@ -95,6 +97,14 @@ const CategoryPage = () => {
                         />
                     </div>
                 ))}
+
+            </div>
+
+            <div className='w-full max-w-[1230px] mx-auto flex flex-col gap-[60px] px-4'>
+
+                <Texts text_small="Suitable Products" text_big="" />
+
+                <PopuplarProducts />
 
             </div>
             

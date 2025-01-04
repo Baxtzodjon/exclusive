@@ -1,38 +1,14 @@
-// // components/SearchInput.tsx
-// import React from 'react';
-
-// interface SearchInputProps {
-//   value: string;
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-// }
-
-// const SearchInput: React.FC<SearchInputProps> = ({ value, onChange }) => {
-//   return (
-//     <input
-//       type="search"
-//       value={value}
-//       onChange={onChange}
-//       placeholder="Search products..."
-//       className="w-full p-3 mb-6 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-//     />
-//   );
-// };
-
-// export default SearchInput;
-
 // components/SearchInput.tsx
 import Image from "next/image";
 import React from "react";
 
 const SearchInput = () => {
   const [searchQuery, setSearchQuery] = React.useState<string>("");
-
-  // Функция для обработки отправки формы
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (searchQuery) {
-      // Редирект на страницу /search с параметром query
       location.assign(`/search?query=${searchQuery}`);
     }
   };

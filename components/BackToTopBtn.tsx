@@ -28,7 +28,7 @@ const BackToTopBtn = () => {
         <>
 
             {backToTopBtn && (
-                <button className="fixed bottom-[32px] right-[89px] w-[46px] h-[46px] bg-[#F5F5F5] rounded-full flex items-center justify-center" onClick={scrollUp}>
+                <button className="fixed bottom-[32px] right-[20px] sm:right-[28px] lg:right-[89px] w-[46px] h-[46px] bg-[#F5F5F5] rounded-full flex items-center justify-center" onClick={scrollUp}>
 
                     <Image src="/icons/icons_arrow_right.png" alt="arrow top icon" width="24" height="24" className="rotate-[-90deg]" />
 

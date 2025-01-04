@@ -56,28 +56,26 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
         const client = await clientPromise;
         const db = client.db("mydatabase");
-
-        // Обновление записи в базе данных с новым путем к изображению
+        
         const updatedBanner = await db.collection("banner").findOneAndUpdate(
             { _id: new ObjectId(id) },
             { $set: { image: fileName } },
-            { returnDocument: 'after' } // Возвращаем обновленный документ
+            { returnDocument: 'after' }
         );
 
-        // Если баннер не был обновлен, все равно возвращаем успех
         if (!updatedBanner || !updatedBanner.value) {
             console.log(`Banner not found or not updated. ID: ${id}`);
             return NextResponse.json({
-                success: true, // Отправляем успех, даже если ничего не обновилось
-                message: "Banner updated successfully", // but no changes were made
-                data: updatedBanner?.value?.image ?? fileName,  // Если не обновили, возвращаем новый файл
+                success: true,
+                message: "Banner updated successfully",
+                data: updatedBanner?.value?.image ?? fileName,
             });
         }
 
         return NextResponse.json({
             success: true,
             message: 'Banner updated successfully',
-            data: updatedBanner.value.image,  // Возвращаем новое имя файла
+            data: updatedBanner.value.image,
         });
 
     } catch (error: any) {

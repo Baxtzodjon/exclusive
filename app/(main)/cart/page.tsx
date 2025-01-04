@@ -1,5 +1,7 @@
 "use client"
 
+import PopuplarProducts from "@/components/PopularProducts";
+import Texts from "@/components/Texts";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -48,20 +50,12 @@ const page = () => {
             } else if (type === "decrease" && newQuantities[productId] > 1) {
                 newQuantities[productId] = newQuantities[productId] - 1;
             }
-            
+
             localStorage.setItem('quantities', JSON.stringify(newQuantities));
 
             return newQuantities;
         });
     };
-
-    /* const handleManualQuantityChange = (productId: string, value: string) => {
-        const quantity = Math.max(1, parseInt(value)); // Ограничиваем минимальное значение на 1
-        setQuantities((prevQuantities) => ({
-            ...prevQuantities,
-            [productId]: quantity,
-        }));
-    }; */
 
     const handleManualQuantityChange = (productId: string, value: string) => {
         const quantity = Math.max(1, parseInt(value));
@@ -95,29 +89,6 @@ const page = () => {
         setTotal(subtotalAmount + shopping);
     };
 
-    /* const calculateTotal = () => {
-        let subtotalAmount = 0;
-    
-        // Перебираем все товары в корзине и рассчитываем subtotal без учета количества
-        cart.forEach((product) => {
-            // Суммируем только базовые цены товаров без учета их количества
-            subtotalAmount += parseFloat(product.price);
-        });
-    
-        // Устанавливаем новый subtotal
-        setSubtotal(subtotalAmount);
-    
-        // Total остается с учетом количества и добавлением стоимости доставки
-        let totalAmount = 0;
-        cart.forEach((product) => {
-            const quantity = quantities[product._id] || 1;
-            totalAmount += parseFloat(product.price) * quantity;
-        });
-    
-        // Устанавливаем итоговую сумму с доставкой
-        setTotal(totalAmount + shopping); // Добавляем стоимость доставки к total
-    }; */
-
     const handleCheckout = () => {
         if (cart.length === 0) {
             alert("Пожалуйста, выберите товар для оформления.");
@@ -135,9 +106,9 @@ const page = () => {
     };
 
     return (
-        <>
+        <div className="flex flex-col gap-[60px] mt-[80px] mb-[140px]">
 
-            <div className="w-full max-w-[1200px] mx-auto flex items-center justify-center flex-wrap md:flex-col gap-[80px] mt-[80px] mb-[140px] px-4">
+            <div className="w-full max-w-[1200px] mx-auto flex items-center justify-center flex-wrap md:flex-col gap-[80px] px-4">
 
                 {cart.length === 0 ? (
                     <p className="text-[#000000] text-[18px] sm:text-[24px] md:text-[36px] leading-[48px] text-center" style={{ letterSpacing: '4%' }}>Your cart is empty.</p>
@@ -275,7 +246,15 @@ const page = () => {
 
             </div>
 
-        </>
+            <div className="w-full max-w-[1200px] mx-auto px-4 flex flex-col gap-[60px]">
+
+                <Texts text_small="Available Products" text_big="" />
+
+                <PopuplarProducts />
+
+            </div>
+
+        </div>
     )
 }
 

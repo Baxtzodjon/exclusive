@@ -29,14 +29,21 @@ const page = () => {
         }
     }, []);
 
-    /* const handleCartClick = (productId: string) => {
+    const handleCartClick = (productId: string) => {
         const updatedCart = cart.includes(productId)
             ? cart.filter((id) => id !== productId)
             : [...cart, productId];
 
         setCart(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-    }; */
+    };
+    
+    useEffect(() => {
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
+    }, []);
 
     const fetchProductsByIds = async (ids: string[]) => {
         const res = await fetch(`http://localhost:3000/api/product`);
@@ -89,15 +96,7 @@ const page = () => {
 
                                             </div>
 
-                                            <div className="absolute left-0 bottom-0 w-full h-[41px] bg-[#000000] rounded-bl-[4px] rounded-br-[4px] flex items-center justify-center gap-2 cursor-pointer opacity-0 group-hover:opacity-100 duration-300">
-
-                                                <Image src="/icons/white_cart.png" alt="icon cart" width="24" height="24" />
-
-                                                <small className="text-[#FFFFFF] text-[12px] font-normal leading-[18px]">Add To Cart</small>
-
-                                            </div>
-
-                                            {/* <button
+                                            <button
                                                 className="absolute left-0 bottom-0 w-full h-[41px] bg-[#000000] rounded-bl-[4px] rounded-br-[4px] flex items-center justify-center gap-2 cursor-pointer opacity-0 group-hover:opacity-100 duration-300"
                                                 onClick={() => handleCartClick(product._id)}
                                             >
@@ -105,7 +104,7 @@ const page = () => {
                                                 <small className="text-[#FFFFFF] text-[12px] font-normal leading-[18px]">
                                                     {cart.includes(product._id) ? "Remove from cart" : "Add To Cart"}
                                                 </small>
-                                            </button> */}
+                                            </button>
 
                                         </div>
 

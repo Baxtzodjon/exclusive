@@ -1,11 +1,11 @@
 // app/api/clerk-stats/route.ts
 import { NextResponse } from 'next/server';
 
-const CLERK_API_URL = 'https://api.clerk.dev/v1';  // URL для Clerk API
-const CLERK_API_KEY = process.env.CLERK_SECRET_KEY; // Ваш секретный API ключ
+const CLERK_API_URL = 'https://api.clerk.dev/v1';
+const CLERK_API_KEY = process.env.CLERK_SECRET_KEY;
 
 export async function GET() {
-    console.log("CLERK_API_KEY:", CLERK_API_KEY);  // Логируем ключ для отладки
+    console.log("CLERK_API_KEY:", CLERK_API_KEY);
 
     try {
         const response = await fetch(`${CLERK_API_URL}/users`, {

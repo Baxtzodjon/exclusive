@@ -84,54 +84,6 @@ export default function AddProduct() {
         }
     };
 
-    // const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault();
-    //     setIsLoading(true);
-    //     console.log("Отправка обновлений продукта", formData);
-
-    //     if (!formData._id) {
-    //         setMessage('Отсутствует ID продукта!');
-    //         setIsLoading(false);
-    //         return;
-    //     }
-
-    //     const { _id, ...updatedProductData } = formData;
-
-    //     try {
-    //         const response = await fetch(`/api/product/${_id}`, {
-    //             method: 'PATCH',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(updatedProductData),
-    //         });
-
-    //         if (!response.ok) {
-    //             throw new Error(`Ошибка: ${response.statusText}`);
-    //         }
-
-    //         const data = await response.json();
-    //         console.log("Ответ сервера:", data);
-
-    //         if (data.success) {
-    //             setMessage('Продукт успешно обновлен!');
-    //             setProductControl((prevState) =>
-    //                 prevState.map((product) =>
-    //                     product._id === formData._id ? formData : product
-    //                 )
-    //             );
-    //             setIsModalOpen(false);
-    //         } else {
-    //             setMessage(data.message || 'Не удалось обновить продукт.');
-    //         }
-    //     } catch (error) {
-    //         console.error('Ошибка при обновлении продукта:', error);
-    //         setMessage('Ошибка при обновлении продукта. Попробуйте снова.');
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
@@ -151,7 +103,7 @@ export default function AddProduct() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedProductData), // Отправляем данные, которые нужно обновить
+                body: JSON.stringify(updatedProductData),
             });
 
             if (!response.ok) {
@@ -180,255 +132,15 @@ export default function AddProduct() {
         }
     };
 
-    // const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault();
-    //     setIsLoading(true);
-
-    //     const formDataToUpload = new FormData();
-
-    //     // Проверка на наличие файлов
-    //     if (formData.images) {
-    //         formDataToUpload.append("image", formData.images);
-    //     }
-
-    //     if (formData.image_second) {
-    //         formDataToUpload.append("image", formData.image_second);
-    //     }
-
-    //     try {
-    //         // Отправляем запрос на загрузку файлов
-    //         const uploadResponse = await fetch('/api/upload', {
-    //             method: 'POST',
-    //             body: formDataToUpload,
-    //         });
-
-    //         if (!uploadResponse.ok) {
-    //             throw new Error('Ошибка загрузки файла.');
-    //         }
-
-    //         const uploadData = await uploadResponse.json();
-
-    //         if (uploadData.success) {
-    //             // Используем путь к загруженному файлу
-    //             const filePath = uploadData.data;
-
-    //             // Обновляем данные о продукте с новым путем к файлу
-    //             const updatedProductData = {
-    //                 ...formData,
-    //                 images: filePath, // Новый путь к файлу
-
-    //                 // Если у вас есть другие данные (например, title, description), их тоже нужно добавить:
-    //                 title: formData.titles,      // Заголовок продукта
-    //                 description: formData.description, // Описание продукта
-    //                 // Можно добавить и другие поля из формы по аналогии, если они присутствуют
-    //             };
-
-    //             // Отправляем PATCH запрос для обновления продукта
-    //             const response = await fetch(`/api/product/${formData._id}`, {
-    //                 method: 'PATCH',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //                 body: JSON.stringify(updatedProductData),
-    //             });
-
-    //             if (!response.ok) {
-    //                 throw new Error('Ошибка при обновлении продукта');
-    //             }
-
-    //             const data = await response.json();
-    //             if (data.success) {
-    //                 setMessage('Продукт успешно обновлен!');
-    //                 setIsModalOpen(false);
-    //             } else {
-    //                 setMessage('Не удалось обновить продукт');
-    //             }
-    //         } else {
-    //             setMessage('Ошибка при загрузке файла');
-    //         }
-    //     } catch (error) {
-    //         console.error('Ошибка при загрузке и обновлении:', error);
-    //         setMessage('Ошибка при загрузке и обновлении. Попробуйте снова.');
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
-    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    //     const { name, value } = e.target;
-    //     setFormData((prevState) => ({
-    //         ...prevState,
-    //         [name]: value,
-    //     }));
-    // };
-
-    // const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault();
-    //     setIsLoading(true);
-    //     console.log("Отправка обновлений продукта", formData);
-
-    //     if (!formData._id) {
-    //         setMessage('Отсутствует ID продукта!');
-    //         setIsLoading(false);
-    //         return;
-    //     }
-
-    //     const { _id, ...updatedProductData } = formData;
-
-    //     try {
-    //         // Загружаем изображения, если они выбраны
-    //         if (images.images && images.image_second && images.image_third) {
-    //             const uploadImages = async (image: File | null) => {
-    //                 const formData = new FormData();
-    //                 formData.append("image", image!);
-
-    //                 const response = await fetch("/api/upload", {
-    //                     method: "POST",
-    //                     body: formData,
-    //                 });
-    //                 const data = await response.json();
-    //                 return data.data;
-    //             };
-
-    //             const uploadedImageFirst = await uploadImages(images.images);
-    //             const uploadedImageSecond = await uploadImages(images.image_second);
-    //             const uploadedImageThird = await uploadImages(images.image_third);
-
-    //             // Добавляем пути к изображениям в данные продукта
-    //             updatedProductData.images = uploadedImageFirst;
-    //             updatedProductData.image_second = uploadedImageSecond;
-    //             updatedProductData.image_third = uploadedImageThird;
-
-    //             // Обновляем данные продукта
-    //             const response = await fetch(`localhost:3000/api/product/${formData._id}`, {
-    //                 method: 'PATCH',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //                 body: JSON.stringify(updatedProductData),
-    //             });
-
-    //             if (!response.ok) {
-    //                 throw new Error(`Ошибка: ${response.statusText}`);
-    //             }
-
-    //             const data = await response.json();
-    //             console.log("Ответ сервера:", data);
-
-    //             if (data.success) {
-    //                 setMessage('Продукт успешно обновлен!');
-    //                 setProductControl((prevState) =>
-    //                     prevState.map((product) =>
-    //                         product._id === formData._id ? formData : product
-    //                     )
-    //                 );
-    //                 setIsModalOpen(false);
-    //             } else {
-    //                 setMessage(data.message || 'Не удалось обновить продукт.');
-    //             }
-    //         } else {
-    //             setMessage('Пожалуйста, выберите все изображения.');
-    //         }
-    //     } catch (error) {
-    //         console.error('Ошибка при обновлении продукта:', error);
-    //         setMessage('Ошибка при обновлении продукта. Попробуйте снова.');
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
-    // const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault();
-    //     setIsLoading(true);
-    //     console.log("Отправка обновлений продукта", formData);
-
-    //     if (!formData._id) {
-    //         setMessage('Отсутствует ID продукта!');
-    //         setIsLoading(false);
-    //         return;
-    //     }
-
-    //     const { _id, ...updatedProductData } = formData;
-
-    //     try {
-    //         // Функция для загрузки изображений
-    //         const uploadImage = async (image: File | null) => {
-    //             if (!image) return null; // Если изображение не выбрано, возвращаем null
-
-    //             const formData = new FormData();
-    //             formData.append("image", image);
-
-    //             const response = await fetch("/api/upload", {
-    //                 method: "POST",
-    //                 body: formData,
-    //             });
-    //             const data = await response.json();
-
-    //             if (data.success) {
-    //                 return data.data; // Вернем URL изображения после загрузки
-    //             } else {
-    //                 throw new Error(data.message || 'Ошибка загрузки изображения');
-    //             }
-    //         };
-
-    //         // Загружаем изображения
-    //         const uploadedImageFirst = await uploadImage(images.images);
-    //         const uploadedImageSecond = await uploadImage(images.image_second);
-    //         const uploadedImageThird = await uploadImage(images.image_third);
-
-    //         // Добавляем пути к загруженным изображениям
-    //         if (uploadedImageFirst && uploadedImageSecond && uploadedImageThird) {
-    //             updatedProductData.images = uploadedImageFirst;
-    //             updatedProductData.image_second = uploadedImageSecond;
-    //             updatedProductData.image_third = uploadedImageThird;
-
-    //             // Отправляем PATCH-запрос для обновления продукта
-    //             const response = await fetch(`http://localhost:3000/api/product/${formData._id}`, {
-    //                 method: 'PATCH',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //                 body: JSON.stringify(updatedProductData),
-    //             });
-
-    //             if (!response.ok) {
-    //                 throw new Error(`Ошибка: ${response.statusText}`);
-    //             }
-
-    //             const data = await response.json();
-    //             if (data.success) {
-    //                 setMessage('Продукт успешно обновлен!');
-    //                 setProductControl((prevState) =>
-    //                     prevState.map((product) =>
-    //                         product._id === formData._id ? { ...product, ...updatedProductData } : product
-    //                     )
-    //                 );
-    //                 setIsModalOpen(false);
-    //             } else {
-    //                 setMessage(data.message || 'Не удалось обновить продукт.');
-    //             }
-    //         } else {
-    //             setMessage('Пожалуйста, выберите все изображения.');
-    //         }
-    //     } catch (error) {
-    //         console.error('Ошибка при обновлении продукта:', error);
-    //         setMessage('Ошибка при обновлении продукта. Попробуйте снова.');
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> | any) => {
         const { name, value, files } = e.target;
 
         if (files && files.length > 0) {
-            // Получаем имя файла
             const fileName = files[0].name;
 
-            // Обновляем formData с правильным именем файла
             setFormData((prevState) => ({
                 ...prevState,
-                [name]: fileName, // Обновляем только имя файла
+                [name]: fileName,
             }));
         } else {
             setFormData((prevState) => ({
@@ -509,7 +221,7 @@ export default function AddProduct() {
             {isModalOpen && (
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
 
-                    <div className="relative bg-white p-8 rounded-md w-full max-w-[650px]"> {/* 500 */}
+                    <div className="relative bg-white p-8 rounded-md w-full max-w-[650px]">
 
                         <h2 className="text-xl font-semibold mb-4">Edit Product</h2>
 
@@ -522,16 +234,6 @@ export default function AddProduct() {
                                     <div className="mb-4">
 
                                         <label htmlFor="images" className="block text-sm font-medium">Image First</label>
-
-                                        {/* <input
-                                            type="text"
-                                            name="images"
-                                            value={formData.images}
-                                            onChange={handleInputChange}
-                                            className="custom-input w-full p-2 border border-gray-300 rounded-md shadow-sm transition duration-300 ease-in-out transform focus:-translate-y-1 focus:outline-[#DB4444] hover:shadow-lg hover:border-blue-300 bg-gray-100"
-                                            id="images"
-                                            required
-                                        /> */}
 
                                         <input type="file" name="images" id="images" className="file:bg-gray-100 file:px-2 file:py-1 file:border file:border-gray-300 file:rounded-lg file:text-gray-700 file:cursor-pointer file:shadow-lg bg-white text-gray-700 rounded-lg cursor-pointer hover:shadow-lg duration-300 ease-in-out" onChange={handleInputChange} />
 
@@ -570,7 +272,7 @@ export default function AddProduct() {
 
                                 </div>
 
-                                <div className="flex items-center gap-2"> {/* justify-between */}
+                                <div className="flex items-center gap-2">
 
                                     <div className="mb-4 w-full">
 
@@ -614,16 +316,6 @@ export default function AddProduct() {
 
                                     <label htmlFor="image_second" className="block text-sm font-medium">Images Second</label>
 
-                                    {/* <input
-                                        type="text"
-                                        name="image_second"
-                                        value={formData.image_second}
-                                        onChange={handleInputChange}
-                                        className="custom-input w-full p-2 border border-gray-300 rounded-md shadow-sm transition duration-300 ease-in-out transform focus:-translate-y-1 focus:outline-[#DB4444] hover:shadow-lg hover:border-blue-300 bg-gray-100"
-                                        id="image_second"
-                                        required
-                                    /> */}
-
                                     <input type="file" name="image_second" id="image_second" className="file:bg-gray-100 file:px-2 file:py-1 file:border file:border-gray-300 file:rounded-lg file:text-gray-700 file:cursor-pointer file:shadow-lg bg-white text-gray-700 rounded-lg cursor-pointer hover:shadow-lg duration-300 ease-in-out" onChange={handleInputChange} />
 
                                 </div>
@@ -631,16 +323,6 @@ export default function AddProduct() {
                                 <div className="mb-4">
 
                                     <label htmlFor="image_third" className="block text-sm font-medium">Images Third</label>
-
-                                    {/* <input
-                                        type="text"
-                                        name="image_third"
-                                        value={formData.image_third}
-                                        onChange={handleInputChange}
-                                        className="custom-input w-full p-2 border border-gray-300 rounded-md shadow-sm transition duration-300 ease-in-out transform focus:-translate-y-1 focus:outline-[#DB4444] hover:shadow-lg hover:border-blue-300 bg-gray-100"
-                                        id="image_third"
-                                        required
-                                    /> */}
 
                                     <input type="file" name="image_third" id="image_third" className="file:bg-gray-100 file:px-2 file:py-1 file:border file:border-gray-300 file:rounded-lg file:text-gray-700 file:cursor-pointer file:shadow-lg bg-white text-gray-700 rounded-lg cursor-pointer hover:shadow-lg duration-300 ease-in-out" onChange={handleInputChange} />
 

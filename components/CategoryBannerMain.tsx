@@ -102,7 +102,7 @@ const CategoryBannerMain = () => {
                                 <SignedIn>
                                     <li
                                         className="text-[#000000] text-[16px] font-normal leading-[24px] hover:text-[#DB4444] transition-all"
-                                        onClick={() => handleCategoryClick(category.link)} // Для авторизованных пользователей
+                                        onClick={() => handleCategoryClick(category.link)}
                                     >
                                         <Link href={category.link}>{category.name}</Link>
                                     </li>

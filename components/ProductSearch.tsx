@@ -20,17 +20,16 @@ const ProductSearch = () => {
     const [loading, setLoading] = useState<boolean>(true);
 
     const [minPrice, setMinPrice] = useState<number>(0);
-    const [maxPrice, setMaxPrice] = useState<number>(1000); // Задаём максимальную цену
+    const [maxPrice, setMaxPrice] = useState<number>(1000);
     const [filteredByPrice, setFilteredByPrice] = useState<Product[]>([]);
 
     useEffect(() => {
-        // Функция для загрузки всех продуктов
         const fetchProducts = async () => {
             try {
                 const res = await fetch("http://localhost:3000/api/product");
                 const data = await res.json();
                 if (data.success && data.data) {
-                    setProducts(data.data);  // Сохраняем все продукты
+                    setProducts(data.data);
                 }
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -42,7 +41,6 @@ const ProductSearch = () => {
         fetchProducts();
     }, []);
 
-    // Фильтрация продуктов по названию и цене
     const filterProducts = () => {
         const filteredBySearch = products.filter((product) =>
             product.titles.toLowerCase().includes(searchQuery.toLowerCase())
@@ -56,33 +54,28 @@ const ProductSearch = () => {
         setFilteredProducts(filtered);
     };
 
-    // Обработчик изменения значения в поисковом поле
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
     };
 
-    // Обработчик изменения минимальной цены
     const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value);
         setMinPrice(value);
     };
-
-    // Обработчик изменения максимальной цены
+    
     const handleMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value);
         setMaxPrice(value);
     };
 
-    // Обработчик изменения диапазона цен с помощью ползунка
     const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value);
         setMaxPrice(value);
     };
 
-    // Применяем фильтрацию после изменения любого из фильтров
     useEffect(() => {
         if (searchQuery === "" && minPrice === 0 && maxPrice === 1000) {
-            setFilteredProducts([]);  // Показывать пусто, если нет поиска и нет фильтрации по цене
+            setFilteredProducts([]);
         } else {
             filterProducts();
         }
@@ -90,18 +83,8 @@ const ProductSearch = () => {
 
     return (
         <div className="max-w-4xl mx-auto p-6">
-            {/* Поле поиска */}
-            {/* <input
-                type="search"
-                value={searchQuery}
-                onChange={handleSearch}
-                placeholder="Search products..."
-                className="w-full p-3 mb-6 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            /> */}
+            <SearchInput />
 
-            <SearchInput /> {/* value={searchQuery} onChange={handleSearch} */}
-
-            {/* Фильтрация по цене */}
             <div className="mb-6">
                 <label className="block text-lg font-semibold mb-2">Filter by price</label>
                 <input
@@ -149,17 +132,14 @@ const ProductSearch = () => {
                 </div>
             </div>
 
-            {/* Индикатор загрузки */}
             {loading ? (
                 <p className="text-center text-gray-500">Loading...</p>
             ) : (
                 <div>
-                    {/* Если нет результатов, показываем пусто */}
                     {searchQuery === "" && minPrice === 0 && maxPrice === 1000 && filteredProducts.length === 0 ? (
                         <p className="text-center text-gray-500">No products found</p>
                     ) : (
                         <div>
-                            {/* Отображение продуктов, если есть результаты поиска */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 {filteredProducts.map((product) => (
                                     <div

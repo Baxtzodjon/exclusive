@@ -1,68 +1,49 @@
 "use client"
 
-import Advertising from "@/components/Advertising";
-import CardItemMain from "@/components/CardItemMain";
-import CarouselCards from "@/components/CarouselCards";
-import CategoryBannerMain from "@/components/CategoryBannerMain";
-import PopuplarProducts from "@/components/PopularProducts";
-import ProductCards from "@/components/ProductCards";
-import ProductSearch from "@/components/ProductSearch";
 import Image from "next/image";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 
 const page = () => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [message, setMessage] = useState("");
 
-    const [btnText, setBtnText] = useState('Send Message');
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
 
-    async function handleSubmit(event: any) {
-        event.preventDefault();
+        const serviceId = "service_sha512n";
+        const templateId = "template_lpfgy3w";
+        const publicKey = "B8Vj1n9a77DivjGuN";
 
-        if (isSubmitting) return;
-        setIsSubmitting(true);
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            from_phone: phone,
+            to_name: "Rasulov Baxtzod",
+            message: message,
+        };
 
-        const formData = new FormData(event.target);
-        formData.append("access_key", "0d610a51-d65d-4a3b-93a8-2e54da1bc333");
-
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-
-        try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-                body: json,
-            });
-
-            const result = await response.json();
-            if (result.success) {
-                console.log(result);
-                setBtnText("Message Sent!");
-                setTimeout(() => setBtnText("Send Message"), 3000);
-            } else {
-                setBtnText(result.message);
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            setBtnText("Something went wrong. Please try again.");
-        } finally {
-            setIsSubmitting(false);
-        }
-    }
+        emailjs.send(serviceId, templateId, templateParams, publicKey)
+            .then((response) => {
+                alert("Message sent successfully!");
+                console.log("Message sent successfully:", response);
+                setName("");
+                setEmail("");
+                setPhone("");
+                setMessage("");
+            })
+            .catch((error) => {
+                alert("Failed to send message. Please try again later.");
+                console.error("Failed to send message:", error);
+            })
+    };
 
     return (
         <>
 
-            {/* <CarouselCards /> */}
-
-            {/* <CardItemMain /> */}
-
-            {/* <ProductSearch /> */}
-
-            <div className="w-full max-w-[1170px] mx-auto flex items-center justify-center flex-wrap gap-[20px] sm:gap-[40px] mt-[100px] mb-[140px]"> {/* flex-wrap */}
+            <div className="w-full max-w-[1170px] mx-auto flex items-center justify-center flex-wrap gap-[20px] sm:gap-[40px] mt-[100px] mb-[140px]">
 
                 <div className="w-[95%] lg:w-[360px] h-[457px] bg-[#FFFFFF] rounded p-10 sm:px-[35px] sm:py-[40px] shadow-lg m-5 sm:m-0">
 
@@ -124,25 +105,25 @@ const page = () => {
 
                 </div>
 
-                <div className="w-full lg:w-fit h-fit lg:h-[457px] bg-[#FFFFFF] rounded shadow-lg flex items-center justify-center p-5 sm:p-0 m-5 lg:m-0"> {/* w-[95%] */} {/* md:h-[457px] */} {/* p-5 sm:p-0 m-5 sm:m-0 */} {/* sm:py-[40px] */}
+                <div className="w-full lg:w-fit h-fit lg:h-[457px] bg-[#FFFFFF] rounded shadow-lg flex items-center justify-center p-5 sm:p-0 m-5 lg:m-0">
 
                     <form className="flex items-center justify-center flex-wrap md:flex-col gap-8 sm:p-4 lg:p:0" onSubmit={handleSubmit}>
 
                         <div className="flex items-center justify-center flex-wrap gap-4">
 
-                            <input type="text" name="name" placeholder="Your Name *" className="w-full lg:w-[235px] h-[50px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 text-[#000000] text-[16px] font-normal leading-[24px]" required /> {/* w-[235px] */}
+                            <input type="text" name="name" value={name} placeholder="Your Name *" className="w-full lg:w-[235px] h-[50px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 text-[#000000] text-[16px] font-normal leading-[24px]" onChange={(e) => setName(e.target.value)} required />
 
-                            <input type="email" name="email" placeholder="Your Email *" className="w-full lg:w-[235px] h-[50px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 text-[#000000] text-[16px] font-normal leading-[24px]" required />
+                            <input type="email" name="email" value={email} placeholder="Your Email *" className="w-full lg:w-[235px] h-[50px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 text-[#000000] text-[16px] font-normal leading-[24px]" onChange={(e) => setEmail(e.target.value)} required />
 
-                            <input type="tel" name="phone" placeholder="Your Phone *" className="w-full lg:w-[235px] h-[50px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 text-[#000000] text-[16px] font-normal leading-[24px]" required />
+                            <input type="tel" name="phone" value={phone} placeholder="Your Phone *" className="w-full lg:w-[235px] h-[50px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 text-[#000000] text-[16px] font-normal leading-[24px]" onChange={(e) => setPhone(e.target.value)} required />
 
                         </div>
 
                         <div className="w-full flex items-center sm:items-center lg:items-end flex-col gap-[32px]">
 
-                            <textarea name="message" placeholder="Your Message" className="w-full lg:w-[737px] h-[207px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 resize-none text-[#000000] text-[16px] font-normal leading-[24px]"></textarea> {/* sm:w-[500px] */}
+                            <textarea name="message" value={message} placeholder="Your Message" className="w-full lg:w-[737px] h-[207px] bg-[#F5F5F5] rounded outline-[#DB4444] p-4 resize-none text-[#000000] text-[16px] font-normal leading-[24px]" onChange={(e) => setMessage(e.target.value)}></textarea>
 
-                            <button type="submit" className="w-full lg:w-[215px] h-[56px] bg-[#DB4444] rounded text-[#FFFFFF] text-[16px] font-medium leading-[24px] hover:bg-[#b83a3a]" disabled={isSubmitting}>{btnText}</button> {/* w-[215px] */}
+                            <button type="submit" className="w-full lg:w-[215px] h-[56px] bg-[#DB4444] rounded text-[#FFFFFF] text-[16px] font-medium leading-[24px] hover:bg-[#b83a3a]">Send Message</button>
 
                         </div>
 

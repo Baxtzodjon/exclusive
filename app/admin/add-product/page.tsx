@@ -208,7 +208,7 @@ export default function AddProduct() {
 
                         <option value="phones">Phones</option>
                         <option value="computers">Computers</option>
-                        <option value="smartWatches">SmartWatches</option> {/* smartwatch */} {/* SmartWatch */}
+                        <option value="smartWatches">SmartWatches</option> 
                         <option value="camera">Camera</option>
                         <option value="headphones">HeadPhones</option>
                         <option value="gaming">Gaming</option>
@@ -217,7 +217,7 @@ export default function AddProduct() {
 
                 </div>
 
-                <button type="submit" className="text-sm font-semibold w-full h-[50px] px-4 py-2 border border-gray-300 rounded-lg shadow-sm transition duration-300 ease-in-out transform focus:-translate-y-1 focus:outline-[#DB4444] hover:shadow-lg hover:border-blue-300 bg-gray-100">{/* {addProduct} */}Send</button>
+                <button type="submit" className="text-sm font-semibold w-full h-[50px] px-4 py-2 border border-gray-300 rounded-lg shadow-sm transition duration-300 ease-in-out transform focus:-translate-y-1 focus:outline-[#DB4444] hover:shadow-lg hover:border-blue-300 bg-gray-100">Send</button>
 
             </form>
 

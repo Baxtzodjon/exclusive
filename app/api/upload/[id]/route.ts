@@ -26,26 +26,22 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
                 { status: 400 }
             );
         }
-
-        // Сохраняем файл на сервере
+        
         const fileName = file.name;
         const filePath = path.join(uploadDir, fileName);
 
         const buffer = await file.arrayBuffer();
         await fs.writeFile(filePath, Buffer.from(buffer));
 
-        // Теперь обновляем путь в базе данных
         const client = await clientPromise;
         const db = client.db("mydatabase");
 
-        // Обновление записи в базе данных с новым путем к изображению
         const updatedBanner = await db.collection("banner").findOneAndUpdate(
             { _id: new ObjectId(id) },
-            { $set: { image: `/uploads/${fileName}` } }, // обновляем путь к изображению
-            { returnDocument: 'after' } // Возвращаем обновленный документ
+            { $set: { image: `/uploads/${fileName}` } },
+            { returnDocument: 'after' }
         );
 
-        // Проверяем, что баннер был обновлен
         if (!updatedBanner || !updatedBanner.value) {
             return NextResponse.json(
                 { success: false, message: "Banner not found or not updated" },
@@ -56,7 +52,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         return NextResponse.json({
             success: true,
             message: 'Banner updated successfully',
-            data: updatedBanner.value.image,  // Отправляем новый путь к изображению
+            data: updatedBanner.value.image,
         });
     } catch (error: any) {
         console.error('Error updating banner:', error);

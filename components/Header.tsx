@@ -7,6 +7,7 @@ import DropdownMenu from "./DropdownMenu";
 import { usePathname } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import SearchInput from "./SearchInput";
+import SearchInputSec from "./SearchInputSec";
 
 const Header = () => {
 
@@ -84,15 +85,6 @@ const Header = () => {
                         </SignInButton>
                     </SignedOut>
 
-                    {/* <SignedOut>
-                        <button
-                            className="text-[#000000] text-[16px] font-normal leading-6 text-center hover:border-b border-[#000000] transition-all"
-                            onClick={() => handleAddToSignLogin()}
-                        >
-                            Sign-in
-                        </button>
-                    </SignedOut> */}
-
                 </nav>
 
                 <div className="flex items-center gap-4">
@@ -140,17 +132,11 @@ const Header = () => {
 
                 {isMenuOpen && (
 
-                    <div className="absolute top-16 sm:top-24 left-0 w-full bg-white flex flex-col items-center gap-4 py-4 xl:hidden z-10">
+                    <div className="absolute top-24 left-0 w-full bg-white flex flex-col items-center gap-4 py-4 xl:hidden z-10"> {/* top-16 */}
 
                         <div className="relative w-full px-6">
 
-                            <Image src="/icons/search_icon.png" alt="search icon" width={20} height={20} className="absolute top-[8px] right-[32px]" />
-
-                            <input
-                                type="text"
-                                placeholder="What are you looking for?"
-                                className="text-[#000000] text-[12px] font-normal leading-[18px] w-full h-[38px] px-3 bg-[#F5F5F5] rounded focus:outline-[#DB4444]"
-                            />
+                            <SearchInputSec />
 
                         </div>
 
@@ -171,15 +157,6 @@ const Header = () => {
                                 <button className="text-[#000000] text-[16px] font-normal leading-6 text-center hover:border-b border-[#000000] transition-all">Sign In</button>
                             </SignInButton>
                         </SignedOut>
-
-                        {/* <SignedOut>
-                            <button
-                                className="text-[#000000] text-[16px] font-normal leading-6 text-center hover:border-b border-[#000000] transition-all"
-                                onClick={() => handleAddToSignLogin()}
-                            >
-                                Sign-in
-                            </button>
-                        </SignedOut> */}
 
                         <div className="text-[#000000] text-[16px] font-normal leading-6 text-center sm:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                             Close

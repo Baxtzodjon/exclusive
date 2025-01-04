@@ -12,7 +12,6 @@ const Sidebar = () => {
         { name: 'Add-Product', link: '/admin/add-product', icon: '/icons/admin_plus_square_icon.svg' },
         { name: 'All-Products', link: '/admin/all-products', icon: '/icons/admin_boxes_icon.svg' },
         { name: 'All-Banners', link: '/admin/all-banners', icon: '/icons/admin_add_image_photo_icon.svg' },
-        { name: 'Orders', link: '/admin/orders', icon: '/icons/admin_order_icon.svg' },
     ];
 
     const [open, setOpen] = useState(true);

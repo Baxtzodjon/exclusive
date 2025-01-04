@@ -4,8 +4,7 @@ import StarRating from './StarRating';
 
 const ReviewInp: React.FC = () => {
     const [reviewValue, setReviewValue] = useState<number>(0);
-
-    // Обработчик изменения в инпуте
+    
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = Math.min(Math.max(0, parseInt(event.target.value || '0')), 250);
         setReviewValue(value);

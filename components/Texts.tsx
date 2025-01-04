@@ -9,7 +9,7 @@ interface TextsProps {
 
 const Texts: React.FC<TextsProps> = ({ text_small, text_big }) => {
     return (
-        <div className="flex flex-col gap-5"> {/* flex-wrap lg:flex-col px-4 lg:px-[175px] */}
+        <div className="flex flex-col gap-5">
 
             <div className="flex items-center gap-4">
 

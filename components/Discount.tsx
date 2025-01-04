@@ -35,7 +35,7 @@ const Discount: React.FC<DiscountProps> = ({ discount }) => {
   }, [discount])
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto flex items-center justify-between px-4">
+    <div className="w-full max-w-[1200px] mx-auto flex items-center justify-between">
 
       <div className="flex flex-col gap-6">
 
@@ -43,21 +43,21 @@ const Discount: React.FC<DiscountProps> = ({ discount }) => {
 
           <div className="w-[20px] h-[40px] bg-[#DB4444] rounded"></div>
 
-          <small className="text-[#DB4444] text-[16px] font-semibold leading-[20px]">Today's</small>
+          <small className="text-[#DB4444] text-sm lg:text-[16px] font-semibold leading-[20px]">Today's</small>
 
         </div>
 
-        <div className="flex items-center gap-[87px]">
+        <div className="flex items-start sm:items-center flex-col sm:flex-row gap-[20px] sm:gap-[32px] md:gap-[87px]">
 
-          <h3 className="text-[#000000] text-[36px] font-semibold leading-[48px]" style={{ letterSpacing: "4%" }}>Flash Sales</h3>
+          <h3 className="text-[#000000] text-3xl lg:text-[36px] font-semibold leading-tight lg:leading-[48px]" style={{ letterSpacing: "4%" }}>Flash Sales</h3>
 
-          <div className="flex gap-[17px]">
+          <div className="flex gap-2 sm:gap-[17px]">
 
             <div className="flex flex-col gap-1">
 
               <small className="text-[#000000] text-[12px] font-medium leading-[18px]">Days</small>
 
-              <small className="text-[#000000] text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{days}</small>
+              <small className="text-[#000000] text-3xl lg:text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{days}</small>
 
             </div>
 
@@ -67,7 +67,7 @@ const Discount: React.FC<DiscountProps> = ({ discount }) => {
 
               <small className="text-[#000000] text-[12px] font-medium leading-[18px]">Hours</small>
 
-              <small className="text-[#000000] text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{hours}</small>
+              <small className="text-[#000000] text-3xl lg:text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{hours}</small>
 
             </div>
 
@@ -77,7 +77,7 @@ const Discount: React.FC<DiscountProps> = ({ discount }) => {
 
               <small className="text-[#000000] text-[12px] font-medium leading-[18px]">Minutes</small>
 
-              <small className="text-[#000000] text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{minutes}</small>
+              <small className="text-[#000000] text-3xl lg:text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{minutes}</small>
 
             </div>
 
@@ -87,7 +87,7 @@ const Discount: React.FC<DiscountProps> = ({ discount }) => {
 
               <small className="text-[#000000] text-[12px] font-medium leading-[18px]">Seconds</small>
 
-              <small className="text-[#000000] text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{seconds}</small>
+              <small className="text-[#000000] text-3xl lg:text-[32px] font-bold leading-[30px]" style={{ letterSpacing: '4%' }}>{seconds}</small>
 
             </div>
 
